@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>goatForM</title>
+		<meta name="description" content="SVG Drawing Animation" />
+
+		<style type="text/css">
+			html {
+				font-size: 24px;
+			}
+			body {
+				margin: 0 0 40px;
+				font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+				font-weight: 200;
+				color: #666666;
+				background-color: #FFFFFF;
+				word-break: break-word;
+			}
+			svg * {
+				fill: none;
+				stroke: currentColor;
+			} 
+
+
+           
+
+
+		</style>
+	</head>
+    <body>
+        <script src="dist/vivus.js"></script>
+
+		<input type="text" id="pathInput" name="pathinputbox">
+		<input type="number" id="speedInput" name="speedinputbox" value="10000">
+		<button onclick="createTrace(CT2);">replay</button>
+
+		
+
+        <svg id="my-svg" height=750px width=100%><object src="https://www.lilywattersongames.com/ForM/LilygoatLogo.svg"></object></svg>
+
+		<script>
+			function createTrace(cbm)
+			{
+				const ele = document.getElementById("my-svg");
+				ele.innerHTML = document.getElementById("pathInput").value;
+
+				var speedele = document.getElementById("speedInput").value;
+
+				const myVivus = new Vivus('my-svg', { 
+				type: 'delayed',
+				start: 'manual',
+				duration: speedele,
+				animTimingFunction: Vivus.EASE_OUT,
+				});
+
+				console.log('created');
+
+				myVivus.stop().reset();
+
+				cbm(myVivus)
+			}
+
+			function CT2(myV)
+			{
+				myV.stop().reset().play(1);
+				console.log('run');
+			}
+			
+		</script>
+
+		
+
+		
+    </body>
+
+	
